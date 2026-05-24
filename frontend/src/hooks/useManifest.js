@@ -9,7 +9,7 @@ export function useManifest() {
 
   useEffect(() => {
     if (cached) return;
-    fetch('/content/manifest.json')
+    fetch(`${import.meta.env.BASE_URL}content/manifest.json`)
       .then((r) => {
         if (!r.ok) throw new Error(`Failed to load manifest: ${r.status}`);
         return r.json();

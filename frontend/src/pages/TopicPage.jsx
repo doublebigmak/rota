@@ -28,7 +28,7 @@ export default function TopicPage() {
     if (!topicMeta?.file) return;
     setTopicLoading(true);
     setTopicError(null);
-    fetch(`/content/subjects/${topicMeta.file}`)
+    fetch(`${import.meta.env.BASE_URL}content/subjects/${topicMeta.file}`)
       .then((r) => {
         if (!r.ok) throw new Error(`Could not load topic: ${r.status}`);
         return r.json();
