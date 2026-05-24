@@ -1,0 +1,111 @@
+{
+  "id": "dynamic-systems",
+  "title": "Dynamic Systems and Difference Equations",
+  "estimatedMinutes": 55,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Dynamic Systems and Difference Equations</h2>\n<p>A Kalman Filter is designed for systems that evolve over time. Before adding observations, you need a model of how the hidden state changes from one period to the next.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t = a x_{t-1}"
+    },
+    {
+      "type": "text",
+      "content": "<p>This is a first-order difference equation. The parameter <em>a</em> determines whether the system decays, persists, or explodes.</p>\n<ul>\n<li>If |a| &lt; 1, shocks fade over time.</li>\n<li>If a = 1, the state persists like a level or random walk.</li>\n<li>If |a| &gt; 1, deviations grow over time.</li>\n</ul>"
+    },
+    {
+      "type": "chart",
+      "variant": "line",
+      "title": "Effect of persistence parameter",
+      "data": [
+        {
+          "name": "t0",
+          "a0_8": 10,
+          "a1_0": 10,
+          "a1_1": 10
+        },
+        {
+          "name": "t1",
+          "a0_8": 8,
+          "a1_0": 10,
+          "a1_1": 11
+        },
+        {
+          "name": "t2",
+          "a0_8": 6.4,
+          "a1_0": 10,
+          "a1_1": 12.1
+        },
+        {
+          "name": "t3",
+          "a0_8": 5.1,
+          "a1_0": 10,
+          "a1_1": 13.3
+        }
+      ],
+      "keys": [
+        "a0_8",
+        "a1_0",
+        "a1_1"
+      ],
+      "colors": [
+        "#d97706",
+        "#4f46e5",
+        "#059669"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "<h3>Adding randomness</h3>\n<p>Most real systems do not evolve deterministically. We add process noise:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t = a x_{t-1}+w_t, \\quad w_t \\sim \\mathcal{N}(0,Q)"
+    },
+    {
+      "type": "text",
+      "content": "<p>In finance, <em>w_t</em> could represent new information hitting prices. In macroeconomics, it could represent shocks to productivity, demand, or policy. In engineering, it could represent unmodeled acceleration.</p>\n<h3>Random walk</h3>\n<p>A particularly important model is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=x_{t-1}+w_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>This says the best forecast of tomorrow's state is today's state, plus a random innovation. Local level models, time-varying coefficients, and latent trends often use this structure.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "What does x_t = x_{t-1} + w_t represent?",
+      "options": [
+        "A deterministic decay process",
+        "A random walk",
+        "A static observation equation",
+        "A covariance matrix"
+      ],
+      "answer": 1,
+      "explanation": "The state persists but is disturbed by a random innovation each period."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercises</h3>\n<ol>\n<li>If <em>x₀=10</em> and <em>a=0.8</em>, compute <em>x₁</em>, <em>x₂</em>, and <em>x₃</em> without noise.</li>\n<li>What kind of economic variable might be modeled as a slowly changing random walk?</li>\n</ol>\n<h3>Solutions</h3>\n<ol>\n<li><em>x₁=8</em>, <em>x₂=6.4</em>, <em>x₃=5.12</em>.</li>\n<li>A latent trend, natural rate, potential output estimate, or time-varying regression coefficient.</li>\n</ol>"
+    },
+    {
+      "type": "quiz",
+      "question": "If |a| < 1 in x_t = a x_{t-1}, what happens over time without shocks?",
+      "options": [
+        "The state tends to decay toward zero",
+        "The state explodes",
+        "The state becomes Gaussian automatically",
+        "The observation noise disappears"
+      ],
+      "answer": 0,
+      "explanation": "When |a| is below one, the deterministic system is stable."
+    }
+  ]
+}

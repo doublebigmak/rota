@@ -1,0 +1,101 @@
+{
+  "id": "applications-finance-economics",
+  "title": "Applications in Finance and Economics",
+  "estimatedMinutes": 65,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Applications in Finance and Economics</h2>\n<p>Kalman Filters are especially useful when the object of interest is not directly observed. This is common in macroeconomics, housing analysis, and finance.</p>\n<h3>Local level model</h3>\n<p>The simplest application is extracting a latent trend from noisy observations.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=x_{t-1}+w_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "y_t=x_t+v_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>In housing analysis, <em>y_t</em> could be observed rent growth and <em>x_t</em> could be the latent rent-growth trend. The filter separates persistent signal from temporary noise.</p>\n<h3>Time-varying beta</h3>\n<p>In finance, a stock's beta may change over time. A Kalman Filter can estimate beta recursively.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\beta_t=\\beta_{t-1}+w_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "r_{i,t}=\\alpha_t+\\beta_t r_{m,t}+v_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>Here the hidden state includes the coefficient <em>β_t</em>. The observation equation is a regression equation whose coefficient changes over time.</p>\n<h3>Macro signal extraction</h3>\n<p>Kalman Filters are also used to estimate latent output gaps, natural rates, inflation expectations, and dynamic factors.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Example application areas",
+      "data": [
+        {
+          "name": "Latent trend",
+          "usefulness": 5
+        },
+        {
+          "name": "Time beta",
+          "usefulness": 5
+        },
+        {
+          "name": "Output gap",
+          "usefulness": 4
+        },
+        {
+          "name": "Pair hedge",
+          "usefulness": 4
+        }
+      ],
+      "keys": [
+        "usefulness"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What makes a problem a good candidate for a Kalman Filter?",
+      "options": [
+        "A hidden state observed through noisy data",
+        "A perfectly known deterministic value",
+        "No time dimension",
+        "Only categorical labels"
+      ],
+      "answer": 0,
+      "explanation": "Kalman Filters are designed for dynamic hidden states measured with noise."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Design exercise</h3>\n<p>Choose one applied problem and define:</p>\n<ol>\n<li>the hidden state</li>\n<li>the observed data</li>\n<li>the state equation</li>\n<li>the observation equation</li>\n<li>what <em>Q</em> and <em>R</em> represent</li>\n</ol>\n<h3>Example solution: rental market trend</h3>\n<ul>\n<li>Hidden state: underlying rent-growth trend</li>\n<li>Observed data: measured annual rent growth</li>\n<li>State equation: trend follows a random walk</li>\n<li>Observation equation: measured rent growth equals trend plus noise</li>\n<li><em>Q</em>: how quickly the trend can change</li>\n<li><em>R</em>: measurement noise or temporary market volatility</li>\n</ul>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=x_{t-1}+w_t, \\quad y_t=x_t+v_t"
+    },
+    {
+      "type": "quiz",
+      "question": "In a time-varying beta model, what is usually the hidden state?",
+      "options": [
+        "The beta coefficient",
+        "The market return only",
+        "The final portfolio value",
+        "The observation noise variance only"
+      ],
+      "answer": 0,
+      "explanation": "The beta is treated as an unobserved state that evolves through time."
+    }
+  ]
+}

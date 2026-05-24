@@ -1,0 +1,103 @@
+{
+  "id": "vectors",
+  "title": "Vectors & Scalars",
+  "estimatedMinutes": 20,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<p>A <strong>vector</strong> is a mathematical object with both <em>magnitude</em> (size) and <em>direction</em>. A <strong>scalar</strong> has only magnitude — no direction.</p><p>Examples from physics: <em>temperature</em> is a scalar (25°C), while <em>velocity</em> is a vector (50 km/h heading north).</p>"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Notation</h3><p>A 2D vector <strong>v</strong> is written as a column of components:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\vec{v} = \\begin{bmatrix} v_x \\\\ v_y \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The <strong>magnitude</strong> (length) of a vector is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "|\\vec{v}| = \\sqrt{v_x^2 + v_y^2}"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Interactive: Vector Addition</h3><p>Below you can see two vectors <strong>a</strong> and <strong>b</strong> in 2D space. Drag their tips to explore how vector addition works. The grey arrow shows their sum <strong>a + b</strong>.</p>"
+    },
+    {
+      "type": "visualization",
+      "component": "VectorSpace2D",
+      "props": {
+        "interactive": true,
+        "vectors": [
+          { "x": 3, "y": 1, "color": "#4f46e5", "label": "a" },
+          { "x": 1, "y": 3, "color": "#10b981", "label": "b" }
+        ]
+      }
+    },
+    {
+      "type": "text",
+      "content": "<h3>Vector Addition</h3><p>Vectors are added component-by-component:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\vec{a} + \\vec{b} = \\begin{bmatrix} a_x + b_x \\\\ a_y + b_y \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Dot Product</h3><p>The <strong>dot product</strong> of two vectors produces a scalar and reveals the angle between them:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\vec{a} \\cdot \\vec{b} = a_x b_x + a_y b_y = |\\vec{a}|\\,|\\vec{b}|\\cos\\theta"
+    },
+    {
+      "type": "text",
+      "content": "<p>When the dot product is <strong>zero</strong>, the vectors are perpendicular (orthogonal).</p><h3>Components at a Glance</h3><p>Here are the components of the vectors shown above:</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Component comparison — a = (3, 1)  ·  b = (1, 3)",
+      "data": [
+        { "name": "x-component", "a": 3, "b": 1 },
+        { "name": "y-component", "a": 1, "b": 3 }
+      ],
+      "keys": ["a", "b"],
+      "colors": ["#4f46e5", "#10b981"]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the dot product of a = [3, 1] and b = [1, 3]?",
+      "options": ["6", "10", "4", "√10"],
+      "answer": 0,
+      "explanation": "3×1 + 1×3 = 3 + 3 = 6. The dot product sums the products of matching components."
+    },
+    {
+      "type": "quiz",
+      "question": "Two vectors have a dot product of 0. What does this tell you?",
+      "options": [
+        "They are parallel",
+        "They are perpendicular (orthogonal)",
+        "They have equal magnitude",
+        "One of them is a zero vector"
+      ],
+      "answer": 1,
+      "explanation": "A dot product of zero means cos θ = 0, so θ = 90°. The vectors are perpendicular."
+    },
+    {
+      "type": "quiz",
+      "question": "Which of the following is a scalar quantity?",
+      "options": ["Velocity", "Force", "Temperature", "Displacement"],
+      "answer": 2,
+      "explanation": "Temperature has only magnitude (e.g. 25°C) — no direction. The others are vectors."
+    }
+  ]
+}

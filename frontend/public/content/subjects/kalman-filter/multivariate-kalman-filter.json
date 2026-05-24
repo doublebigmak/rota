@@ -1,0 +1,135 @@
+{
+  "id": "multivariate-kalman-filter",
+  "title": "The Multivariate Kalman Filter",
+  "estimatedMinutes": 75,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>The Multivariate Kalman Filter</h2>\n<p>The multivariate Kalman Filter generalizes the scalar filter to vector states and vector observations. The logic is identical, but variances become covariance matrices and scalar weights become gain matrices.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=A x_{t-1}+B u_t+w_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "z_t=H x_t+v_t"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Prediction</h3>\n<p>The predicted state and covariance are:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t-1}=A\\hat{x}_{t-1|t-1}+Bu_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t-1}=AP_{t-1|t-1}A^T+Q"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Update</h3>\n<p>The innovation compares the observed measurement to the predicted measurement.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "y_t=z_t-H\\hat{x}_{t|t-1}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "S_t=HP_{t|t-1}H^T+R"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K_t=P_{t|t-1}H^TS_t^{-1}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t}=\\hat{x}_{t|t-1}+K_ty_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t}=(I-K_tH)P_{t|t-1}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The matrix <em>S</em> is the innovation covariance. It tells the filter how uncertain the measurement surprise is. The gain matrix <em>K</em> maps that surprise back into state space.</p>\n<h3>Position-velocity example</h3>\n<p>Suppose state is position and velocity, but only position is observed:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=\\begin{bmatrix}p_t\\\\v_t\\end{bmatrix}, \\quad H=\\begin{bmatrix}1&0\\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>A position surprise can update both position and velocity. This is the power of the covariance matrix: even unobserved state components can be updated through their relationship with observed components.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "In the multivariate filter, what is S_t?",
+      "options": [
+        "State transition matrix",
+        "Innovation covariance",
+        "Process noise only",
+        "Observation vector"
+      ],
+      "answer": 1,
+      "explanation": "S_t measures uncertainty in the innovation or prediction error of the observation."
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Scalar versus multivariate objects",
+      "data": [
+        {
+          "name": "State",
+          "scalar": 1,
+          "matrix": 2
+        },
+        {
+          "name": "Uncertainty",
+          "scalar": 1,
+          "matrix": 4
+        },
+        {
+          "name": "Gain",
+          "scalar": 1,
+          "matrix": 2
+        }
+      ],
+      "keys": [
+        "scalar",
+        "matrix"
+      ],
+      "colors": [
+        "#d97706",
+        "#4f46e5"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercise</h3>\n<p>Let <em>H=[1,0]</em> and predicted state <em>[10,2]ᵀ</em>. What is the predicted observation?</p>\n<h3>Solution</h3>\n<p>The predicted observation is <em>10</em>, because <em>H</em> selects the position component.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "Why can velocity be updated even if only position is observed?",
+      "options": [
+        "Because covariance links position and velocity errors",
+        "Because velocity is directly measured",
+        "Because H must be square",
+        "Because Q is always zero"
+      ],
+      "answer": 0,
+      "explanation": "If position and velocity uncertainty are correlated, a position surprise carries information about velocity."
+    }
+  ]
+}

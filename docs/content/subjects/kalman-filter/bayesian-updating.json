@@ -1,0 +1,97 @@
+{
+  "id": "bayesian-updating",
+  "title": "Bayesian Updating and Weighted Evidence",
+  "estimatedMinutes": 60,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Bayesian Updating and Weighted Evidence</h2>\n<p>The Kalman Filter is recursive Bayesian updating for linear Gaussian systems. Each period, it starts with a prior belief, sees a new observation, and forms a posterior belief.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "p(x_t \\mid z_{1:t}) \\propto p(z_t \\mid x_t)p(x_t \\mid z_{1:t-1})"
+    },
+    {
+      "type": "text",
+      "content": "<p>The left-hand side is the posterior distribution of the state after seeing data through time <em>t</em>. The two terms on the right are the likelihood and the prior.</p>\n<h3>Weighted averaging intuition</h3>\n<p>Suppose you have two estimates of the same quantity. One is your model prediction; the other is a new observation. If the observation is very noisy, you should not move much. If the prediction is very uncertain, you should move more.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{new}=\\hat{x}_{prior}+K(z-\\hat{x}_{prior})"
+    },
+    {
+      "type": "text",
+      "content": "<p>This form says: start with the prior estimate, then adjust it by a fraction of the surprise. The fraction is the Kalman gain.</p>\n<h3>Precision</h3>\n<p>Precision is the inverse of variance. High variance means low precision; low variance means high precision.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\text{precision}=\\frac{1}{\\text{variance}}"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Higher precision receives more weight",
+      "data": [
+        {
+          "name": "Noisy estimate",
+          "weight": 0.2
+        },
+        {
+          "name": "Precise estimate",
+          "weight": 0.8
+        }
+      ],
+      "keys": [
+        "weight"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "In Bayesian updating, what is the posterior?",
+      "options": [
+        "Belief before seeing data",
+        "Belief after combining prior and likelihood",
+        "Only the observation error",
+        "The matrix inverse"
+      ],
+      "answer": 1,
+      "explanation": "The posterior is the updated belief after incorporating new evidence."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercise</h3>\n<p>Your prior estimate is 100 with variance 25. A new observation is 110 with variance 4. Which should receive more weight?</p>\n<h3>Solution</h3>\n<p>The observation should receive more weight because its variance is lower. Lower variance means higher precision.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K=\\frac{P}{P+R}=\\frac{25}{25+4}\\approx0.862"
+    },
+    {
+      "type": "text",
+      "content": "<p>The updated estimate is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "100+0.862(110-100)=108.62"
+    },
+    {
+      "type": "quiz",
+      "question": "If measurement variance R increases, what happens to the weight on the new observation?",
+      "options": [
+        "It increases",
+        "It decreases",
+        "It becomes exactly one",
+        "It becomes unrelated to uncertainty"
+      ],
+      "answer": 1,
+      "explanation": "Higher measurement noise makes the observation less trustworthy, reducing the gain."
+    }
+  ]
+}

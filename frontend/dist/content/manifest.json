@@ -1,0 +1,73 @@
+{
+  "subjects": [
+    {
+      "id": "linear-algebra",
+      "title": "Linear Algebra",
+      "description": "Vectors, matrices, transformations, and the geometry of linear equations.",
+      "icon": "📐",
+      "theme": {
+        "primary": "#4f46e5",
+        "accent": "#818cf8",
+        "bg": "#eef2ff"
+      },
+      "topics": [
+        {
+          "id": "vectors",
+          "title": "Vectors & Scalars",
+          "file": "linear-algebra/vectors.json",
+          "estimatedMinutes": 20
+        },
+        {
+          "id": "matrices",
+          "title": "Matrices & Operations",
+          "file": "linear-algebra/matrices.json",
+          "estimatedMinutes": 25
+        }
+      ]
+    },
+    {
+      "id": "calculus",
+      "title": "Calculus",
+      "description": "Limits, derivatives, integrals, and the mathematics of change.",
+      "icon": "∫",
+      "theme": {
+        "primary": "#059669",
+        "accent": "#34d399",
+        "bg": "#ecfdf5"
+      },
+      "topics": [
+        {
+          "id": "derivatives",
+          "title": "Introduction to Derivatives",
+          "file": "calculus/derivatives.json",
+          "estimatedMinutes": 25
+        },
+        {
+          "id": "derivative-rules",
+          "title": "Differentiation Rules",
+          "file": "calculus/derivative-rules.json",
+          "estimatedMinutes": 20
+        }
+      ]
+    },
+    {
+      "id": "data-science",
+      "title": "Data Science",
+      "description": "Statistics, probability, distributions, and making sense of data.",
+      "icon": "📊",
+      "theme": {
+        "primary": "#d97706",
+        "accent": "#fbbf24",
+        "bg": "#fffbeb"
+      },
+      "topics": [
+        {
+          "id": "distributions",
+          "title": "Understanding Distributions",
+          "file": "data-science/distributions.json",
+          "estimatedMinutes": 20
+        }
+      ]
+    }
+  ]
+}

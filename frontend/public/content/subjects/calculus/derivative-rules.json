@@ -1,0 +1,96 @@
+{
+  "id": "derivative-rules",
+  "title": "Differentiation Rules",
+  "estimatedMinutes": 20,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<p>Rather than computing limits each time, we use <strong>differentiation rules</strong> to quickly find derivatives of complex functions.</p><h3>Power Rule</h3>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx} x^n = n x^{n-1}"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Sum & Difference Rule</h3><p>The derivative of a sum is the sum of the derivatives:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx}[f(x) \\pm g(x)] = f'(x) \\pm g'(x)"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Product Rule</h3><p>For the product of two functions:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx}[f(x)\\,g(x)] = f'(x)\\,g(x) + f(x)\\,g'(x)"
+    },
+    {
+      "type": "text",
+      "content": "<p>Mnemonic: \"derivative of first times second, plus first times derivative of second.\"</p><h3>Quotient Rule</h3>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx}\\left[\\frac{f(x)}{g(x)}\\right] = \\frac{f'(x)\\,g(x) - f(x)\\,g'(x)}{[g(x)]^2}"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Chain Rule</h3><p>For a composition of functions (a function of a function):</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx}[f(g(x))] = f'(g(x)) \\cdot g'(x)"
+    },
+    {
+      "type": "text",
+      "content": "<p><strong>Example:</strong> differentiate sin(x²).</p><p>Let f(u) = sin(u) and g(x) = x², so f'(u) = cos(u) and g'(x) = 2x:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx}\\sin(x^2) = \\cos(x^2) \\cdot 2x"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Derivatives of common functions at x = 1",
+      "data": [
+        { "name": "xⁿ (n=2)", "derivative": 2 },
+        { "name": "sin(x)",   "derivative": 0.54 },
+        { "name": "cos(x)",   "derivative": -0.84 },
+        { "name": "eˣ",       "derivative": 2.72 },
+        { "name": "ln(x)",    "derivative": 1 }
+      ],
+      "keys": ["derivative"],
+      "colors": ["#059669"]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the derivative of f(x) = x⁴ + 3x² − 7?",
+      "options": ["4x³ + 6x", "4x³ + 3x", "x⁵/5 + x³ − 7x", "4x³"],
+      "answer": 0,
+      "explanation": "Differentiate term by term: d/dx[x⁴] = 4x³, d/dx[3x²] = 6x, d/dx[−7] = 0. Sum: 4x³ + 6x."
+    },
+    {
+      "type": "quiz",
+      "question": "Using the chain rule, what is d/dx[cos(3x)]?",
+      "options": ["−sin(3x)", "−3 sin(3x)", "3 cos(3x)", "sin(3x)"],
+      "answer": 1,
+      "explanation": "Outer function: cos(u), derivative −sin(u). Inner function: 3x, derivative 3. Chain rule: −sin(3x) · 3 = −3 sin(3x)."
+    },
+    {
+      "type": "quiz",
+      "question": "What rule do you use to differentiate f(x) = x² · sin(x)?",
+      "options": ["Chain rule", "Quotient rule", "Product rule", "Power rule"],
+      "answer": 2,
+      "explanation": "When two functions are multiplied together, use the product rule: (uv)' = u'v + uv'."
+    }
+  ]
+}

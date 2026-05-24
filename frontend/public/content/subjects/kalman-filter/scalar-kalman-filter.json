@@ -1,0 +1,144 @@
+{
+  "id": "scalar-kalman-filter",
+  "title": "The Scalar Kalman Filter",
+  "estimatedMinutes": 70,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>The Scalar Kalman Filter</h2>\n<p>The scalar Kalman Filter is the best place to understand the full algorithm. There is only one hidden state, so covariance becomes variance and matrix notation becomes simple arithmetic.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=a x_{t-1}+w_t, \\quad w_t\\sim\\mathcal{N}(0,Q)"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "z_t=x_t+v_t, \\quad v_t\\sim\\mathcal{N}(0,R)"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Step 1: prediction</h3>\n<p>Given the filtered estimate from the previous period, predict the current state:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t-1}=a\\hat{x}_{t-1|t-1}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t-1}=a^2P_{t-1|t-1}+Q"
+    },
+    {
+      "type": "text",
+      "content": "<p>The predicted mean follows the system equation. The predicted variance increases because process noise adds uncertainty.</p>\n<h3>Step 2: innovation</h3>\n<p>The innovation is the surprise: the difference between the observation and what the model expected to observe.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "y_t=z_t-\\hat{x}_{t|t-1}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "S_t=P_{t|t-1}+R"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Step 3: gain and update</h3>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K_t=\\frac{P_{t|t-1}}{P_{t|t-1}+R}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t}=\\hat{x}_{t|t-1}+K_t y_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t}=(1-K_t)P_{t|t-1}"
+    },
+    {
+      "type": "quiz",
+      "question": "In the scalar filter, what is the innovation y_t?",
+      "options": [
+        "The process noise",
+        "The observation minus the predicted observation",
+        "The prior variance",
+        "The matrix transpose"
+      ],
+      "answer": 1,
+      "explanation": "The innovation is the surprise in the new measurement."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Worked example</h3>\n<p>Suppose the prediction is 10, predicted variance is 4, observation is 13, and measurement variance is 1.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K=\\frac{4}{4+1}=0.8"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t}=10+0.8(13-10)=12.4"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t}=(1-0.8)4=0.8"
+    },
+    {
+      "type": "text",
+      "content": "<p>The estimate moves most of the way toward the observation because the observation is relatively precise. Uncertainty falls from 4 to 0.8 after the update.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Scalar update example",
+      "data": [
+        {
+          "name": "Prediction",
+          "value": 10
+        },
+        {
+          "name": "Observation",
+          "value": 13
+        },
+        {
+          "name": "Updated",
+          "value": 12.4
+        }
+      ],
+      "keys": [
+        "value"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercises</h3>\n<ol>\n<li>Let prediction = 20, predicted variance = 9, observation = 24, and R = 3. Compute the gain and updated estimate.</li>\n<li>What happens if R becomes very large?</li>\n</ol>\n<h3>Solutions</h3>\n<ol>\n<li><em>K=9/(9+3)=0.75</em>. Updated estimate is <em>20+0.75(4)=23</em>.</li>\n<li>The gain approaches zero, so the filter largely ignores the observation.</li>\n</ol>"
+    },
+    {
+      "type": "quiz",
+      "question": "If R is very small, the filter tends to:",
+      "options": [
+        "Trust the observation more",
+        "Ignore all data",
+        "Increase process noise automatically",
+        "Set the state to zero"
+      ],
+      "answer": 0,
+      "explanation": "Small measurement variance means the observation is reliable."
+    }
+  ]
+}

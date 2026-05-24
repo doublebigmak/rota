@@ -1,0 +1,97 @@
+{
+  "id": "python-implementation",
+  "title": "Implementing the Kalman Filter in Python",
+  "estimatedMinutes": 70,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Implementing the Kalman Filter in Python</h2>\n<p>Once the equations are clear, implementation is short. The essential loop has four parts: predict, compute innovation, compute gain, and update.</p>"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Core NumPy loop</h3>\n<pre><code>import numpy as np\n\n# prediction\nx_pred = A @ x\nP_pred = A @ P @ A.T + Q\n\n# innovation\ny = z - H @ x_pred\nS = H @ P_pred @ H.T + R\n\n# gain\nK = P_pred @ H.T @ np.linalg.inv(S)\n\n# update\nx = x_pred + K @ y\nP = (np.eye(len(x)) - K @ H) @ P_pred</code></pre>"
+    },
+    {
+      "type": "text",
+      "content": "<p>The <code>@</code> operator performs matrix multiplication. The state vector <code>x</code> and covariance matrix <code>P</code> are repeatedly overwritten as new observations arrive.</p>\n<h3>Scalar local level model</h3>\n<p>A simple first implementation is a local level model:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=x_{t-1}+w_t, \\quad z_t=x_t+v_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>Here the hidden state is a slowly changing true level, and the observations are noisy measurements of that level.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "line",
+      "title": "Filtering noisy observations",
+      "data": [
+        {
+          "name": "t1",
+          "true": 10,
+          "observed": 12,
+          "filtered": 10.8
+        },
+        {
+          "name": "t2",
+          "true": 11,
+          "observed": 15,
+          "filtered": 12.5
+        },
+        {
+          "name": "t3",
+          "true": 12,
+          "observed": 11,
+          "filtered": 12.0
+        },
+        {
+          "name": "t4",
+          "true": 13,
+          "observed": 14,
+          "filtered": 12.9
+        }
+      ],
+      "keys": [
+        "true",
+        "observed",
+        "filtered"
+      ],
+      "colors": [
+        "#d97706",
+        "#4f46e5",
+        "#059669"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "In NumPy, what does A @ P @ A.T represent in the Kalman Filter?",
+      "options": [
+        "Covariance propagation through system dynamics",
+        "The observation vector",
+        "The scalar gain only",
+        "The final chart"
+      ],
+      "answer": 0,
+      "explanation": "It propagates the covariance matrix through the transition matrix."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Implementation exercises</h3>\n<ol>\n<li>Simulate a latent random walk with 100 time steps.</li>\n<li>Add Gaussian measurement noise.</li>\n<li>Implement the scalar Kalman Filter.</li>\n<li>Plot true state, noisy observations, and filtered estimate.</li>\n<li>Change <em>Q</em> and <em>R</em>. Explain how the filtered line changes.</li>\n</ol>\n<h3>Expected result</h3>\n<p>Higher <em>R</em> makes the filter smoother because it trusts observations less. Higher <em>Q</em> makes the filter more responsive because it believes the hidden state can move more from period to period.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "If Q increases while R is fixed, what should happen to the filter?",
+      "options": [
+        "It usually becomes more responsive",
+        "It ignores observations completely",
+        "It deletes the covariance matrix",
+        "It becomes non-recursive"
+      ],
+      "answer": 0,
+      "explanation": "Larger process noise means the state can change more, so predictions are less certain and updates respond more."
+    }
+  ]
+}

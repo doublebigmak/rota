@@ -1,0 +1,92 @@
+{
+  "id": "uncertainty-propagation",
+  "title": "Uncertainty Propagation",
+  "estimatedMinutes": 60,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Uncertainty Propagation</h2>\n<p>Kalman filtering requires a rule for how uncertainty changes when a state evolves. If the state estimate is uncertain today, the prediction for tomorrow is also uncertain.</p>\n<p>The core covariance propagation equation is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P_{t|t-1}=AP_{t-1|t-1}A^T+Q"
+    },
+    {
+      "type": "text",
+      "content": "<p>This equation has two pieces. The term <em>AP Aᵀ</em> carries existing uncertainty through the system dynamics. The term <em>Q</em> adds new uncertainty from process noise.</p>\n<h3>Why A P Aᵀ?</h3>\n<p>If the random vector <em>x</em> has covariance <em>P</em>, and a new vector is defined as <em>y = Ax</em>, then the covariance of <em>y</em> is <em>APAᵀ</em>.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\operatorname{Cov}(Ax)=E[(Ax-A\\mu)(Ax-A\\mu)^T]=A E[(x-\\mu)(x-\\mu)^T] A^T=APA^T"
+    },
+    {
+      "type": "text",
+      "content": "<p>The transpose appears because covariance is built from an outer product: one side transforms the vector, and the other side transforms its transpose.</p>\n<h3>Process noise</h3>\n<p>The filter also admits that the model is not perfect. The hidden state may receive shocks. These shocks are represented by process noise with covariance <em>Q</em>.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "w_t \\sim \\mathcal{N}(0,Q)"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Uncertainty grows with process noise",
+      "data": [
+        {
+          "name": "No Q",
+          "uncertainty": 4
+        },
+        {
+          "name": "Small Q",
+          "uncertainty": 5
+        },
+        {
+          "name": "Large Q",
+          "uncertainty": 9
+        }
+      ],
+      "keys": [
+        "uncertainty"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "In P_pred = A P Aᵀ + Q, what does Q represent?",
+      "options": [
+        "Observation noise",
+        "New uncertainty from the state evolution",
+        "The identity matrix",
+        "The measurement equation"
+      ],
+      "answer": 1,
+      "explanation": "Q is process noise covariance: uncertainty added because the state evolution is imperfect."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercise</h3>\n<p>Let <code>A = [[2,0],[0,1]]</code> and <code>P = [[1,0],[0,4]]</code>. Compute <em>APAᵀ</em>.</p>\n<h3>Solution</h3>\n<p>The first variable is scaled by 2, so its variance is multiplied by 4. The second is unchanged. Therefore:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "APA^T = \\begin{bmatrix}4 & 0 \\\\ 0 & 4\\end{bmatrix}"
+    },
+    {
+      "type": "quiz",
+      "question": "If a scalar state is multiplied by 2, what happens to its variance?",
+      "options": [
+        "It doubles",
+        "It is unchanged",
+        "It quadruples",
+        "It becomes zero"
+      ],
+      "answer": 2,
+      "explanation": "Variance scales by the square of the multiplier."
+    }
+  ]
+}

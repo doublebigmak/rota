@@ -1,0 +1,96 @@
+{
+  "id": "covariance-uncertainty",
+  "title": "Covariance and Uncertainty",
+  "estimatedMinutes": 55,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Covariance and Uncertainty</h2>\n<p>A Kalman Filter estimates both a value and the uncertainty around that value. This is one of the main differences between filtering and simple smoothing.</p>\n<p>The filter asks: what is my best estimate, and how uncertain am I about that estimate?</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\operatorname{Var}(X)=E[(X-E[X])^2]"
+    },
+    {
+      "type": "text",
+      "content": "<p>Variance measures how spread out a random variable is around its mean. If an estimate has high variance, the filter treats it as less reliable.</p>\n<h3>Covariance</h3>\n<p>When the state has multiple components, uncertainty may move together. Position and velocity errors, for example, may be correlated. Covariance measures this co-movement.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\operatorname{Cov}(X,Y)=E[(X-E[X])(Y-E[Y])]"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P = \\begin{bmatrix} \\operatorname{Var}(p) & \\operatorname{Cov}(p,v) \\\\ \\operatorname{Cov}(v,p) & \\operatorname{Var}(v) \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The matrix <em>P</em> is the estimation error covariance matrix. Its diagonal entries are variances. Its off-diagonal entries are covariances.</p>\n<p>In Kalman filtering, <em>P</em> is updated every period. It tells the filter how confident it should be in the current state estimate.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Different uncertainty levels",
+      "data": [
+        {
+          "name": "Low",
+          "variance": 1
+        },
+        {
+          "name": "Medium",
+          "variance": 4
+        },
+        {
+          "name": "High",
+          "variance": 9
+        }
+      ],
+      "keys": [
+        "variance"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What do the diagonal entries of a covariance matrix represent?",
+      "options": [
+        "Means",
+        "Variances",
+        "Correlations only",
+        "Matrix inverses"
+      ],
+      "answer": 1,
+      "explanation": "The diagonal entries are variances of each component of the vector."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Positive, negative, and zero covariance</h3>\n<p>If two errors tend to be above their means at the same time, covariance is positive. If one tends to be high when the other is low, covariance is negative. If they do not systematically move together, covariance is near zero.</p>\n<p>Covariance matters because updating one component of a state can indirectly improve knowledge about another component.</p>\n<h3>Exercise</h3>\n<p>Suppose your state is <code>[trend, cycle]</code>. Interpret this covariance matrix:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P = \\begin{bmatrix} 9 & -2 \\\\ -2 & 4 \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Solution</h3>\n<p>The trend estimate has variance 9, so it is more uncertain than the cycle estimate, which has variance 4. The covariance is -2, meaning errors in trend and cycle tend to move in opposite directions.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "If covariance between two estimation errors is negative, what does that imply?",
+      "options": [
+        "They tend to move in opposite directions",
+        "They are identical",
+        "They are impossible to estimate",
+        "Their variances are zero"
+      ],
+      "answer": 0,
+      "explanation": "Negative covariance means one error tends to be above its mean when the other is below its mean."
+    }
+  ]
+}

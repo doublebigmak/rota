@@ -1,0 +1,89 @@
+{
+  "subjects": [
+    {
+      "id": "kalman-filter",
+      "title": "Kalman Filter",
+      "description": "A detailed sequence from undergraduate calculus and basic linear algebra to understanding, deriving, and applying the Kalman Filter.",
+      "icon": "📡",
+      "theme": {
+        "primary": "#d97706",
+        "accent": "#fbbf24",
+        "bg": "#fffbeb"
+      },
+      "topics": [
+        {
+          "id": "vectors-matrices-transformations",
+          "title": "Vectors, Matrices, and Transformations",
+          "file": "kalman-filter/vectors-matrices-transformations.json",
+          "estimatedMinutes": 50
+        },
+        {
+          "id": "covariance-uncertainty",
+          "title": "Covariance and Uncertainty",
+          "file": "kalman-filter/covariance-uncertainty.json",
+          "estimatedMinutes": 55
+        },
+        {
+          "id": "gaussian-distributions",
+          "title": "Gaussian Distributions",
+          "file": "kalman-filter/gaussian-distributions.json",
+          "estimatedMinutes": 55
+        },
+        {
+          "id": "uncertainty-propagation",
+          "title": "Uncertainty Propagation",
+          "file": "kalman-filter/uncertainty-propagation.json",
+          "estimatedMinutes": 60
+        },
+        {
+          "id": "dynamic-systems",
+          "title": "Dynamic Systems and Difference Equations",
+          "file": "kalman-filter/dynamic-systems.json",
+          "estimatedMinutes": 55
+        },
+        {
+          "id": "state-space-models",
+          "title": "State-Space Models",
+          "file": "kalman-filter/state-space-models.json",
+          "estimatedMinutes": 65
+        },
+        {
+          "id": "bayesian-updating",
+          "title": "Bayesian Updating and Weighted Evidence",
+          "file": "kalman-filter/bayesian-updating.json",
+          "estimatedMinutes": 60
+        },
+        {
+          "id": "scalar-kalman-filter",
+          "title": "The Scalar Kalman Filter",
+          "file": "kalman-filter/scalar-kalman-filter.json",
+          "estimatedMinutes": 70
+        },
+        {
+          "id": "kalman-gain-derivation",
+          "title": "Deriving the Kalman Gain",
+          "file": "kalman-filter/kalman-gain-derivation.json",
+          "estimatedMinutes": 65
+        },
+        {
+          "id": "multivariate-kalman-filter",
+          "title": "The Multivariate Kalman Filter",
+          "file": "kalman-filter/multivariate-kalman-filter.json",
+          "estimatedMinutes": 75
+        },
+        {
+          "id": "python-implementation",
+          "title": "Implementing the Kalman Filter in Python",
+          "file": "kalman-filter/python-implementation.json",
+          "estimatedMinutes": 70
+        },
+        {
+          "id": "applications-finance-economics",
+          "title": "Applications in Finance and Economics",
+          "file": "kalman-filter/applications-finance-economics.json",
+          "estimatedMinutes": 65
+        }
+      ]
+    }
+  ]
+}

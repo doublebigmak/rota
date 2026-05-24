@@ -1,0 +1,110 @@
+{
+  "id": "state-space-models",
+  "title": "State-Space Models",
+  "estimatedMinutes": 65,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>State-Space Models</h2>\n<p>A state-space model separates the hidden system from the noisy measurements of that system. This separation is the conceptual home of the Kalman Filter.</p>\n<h3>Two equations</h3>\n<p>The first equation describes how the hidden state evolves. The second describes how observations are generated from the hidden state.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t = A x_{t-1} + B u_t + w_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "z_t = Hx_t + v_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>The state <em>x_t</em> is hidden. The observation <em>z_t</em> is visible. The matrix <em>A</em> governs evolution, while <em>H</em> maps the hidden state into observed data.</p>\n<ul>\n<li><em>w_t</em> is process noise with covariance <em>Q</em>.</li>\n<li><em>v_t</em> is measurement noise with covariance <em>R</em>.</li>\n</ul>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "w_t \\sim \\mathcal{N}(0,Q), \\quad v_t \\sim \\mathcal{N}(0,R)"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Example: position and velocity</h3>\n<p>Suppose the hidden state contains position and velocity, but the sensor only observes position.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t=\\begin{bmatrix}p_t\\\\v_t\\end{bmatrix}, \\quad A=\\begin{bmatrix}1&1\\\\0&1\\end{bmatrix}, \\quad H=\\begin{bmatrix}1&0\\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The observation matrix <em>H</em> selects position from the state vector. Velocity is not directly observed, but it can still be inferred because it affects future positions.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Hidden state versus observation",
+      "data": [
+        {
+          "name": "State p",
+          "value": 12
+        },
+        {
+          "name": "State v",
+          "value": 2
+        },
+        {
+          "name": "Observed z",
+          "value": 13
+        }
+      ],
+      "keys": [
+        "value"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What does the observation matrix H do?",
+      "options": [
+        "Maps hidden state into observed measurement space",
+        "Adds process noise",
+        "Stores all past observations",
+        "Inverts the covariance matrix"
+      ],
+      "answer": 0,
+      "explanation": "H tells the model which part or combination of the hidden state is observed."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercise</h3>\n<p>Write a state-space model for a local level model where observed rent growth is a noisy measure of an underlying latent rent trend.</p>\n<h3>Solution</h3>\n<p>A simple version is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\text{latent trend: } x_t=x_{t-1}+w_t"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\text{observed rent growth: } z_t=x_t+v_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>This says the true trend changes gradually, while observed rent growth contains measurement noise.</p>"
+    },
+    {
+      "type": "quiz",
+      "question": "In state-space notation, which matrix controls how hidden states become observations?",
+      "options": [
+        "A",
+        "H",
+        "Q",
+        "P"
+      ],
+      "answer": 1,
+      "explanation": "H is the observation matrix."
+    }
+  ]
+}

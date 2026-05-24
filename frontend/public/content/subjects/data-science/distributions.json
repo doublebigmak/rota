@@ -1,0 +1,96 @@
+{
+  "id": "distributions",
+  "title": "Understanding Distributions",
+  "estimatedMinutes": 20,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<p>A <strong>probability distribution</strong> describes how likely different outcomes are for a random variable. Understanding distributions is the foundation of statistics and data analysis.</p>"
+    },
+    {
+      "type": "text",
+      "content": "<h3>The Normal Distribution</h3><p>The most important distribution in statistics — the familiar \"bell curve\". It appears naturally when many independent random effects add together (Central Limit Theorem).</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}}\\, e^{-\\frac{1}{2}\\left(\\frac{x-\\mu}{\\sigma}\\right)^2}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The two parameters are the <strong>mean</strong> μ (center) and <strong>standard deviation</strong> σ (spread).</p><h3>The 68–95–99.7 Rule</h3><p>For a normal distribution:</p><ul><li><strong>68%</strong> of data falls within 1σ of the mean</li><li><strong>95%</strong> falls within 2σ</li><li><strong>99.7%</strong> falls within 3σ</li></ul>"
+    },
+    {
+      "type": "chart",
+      "variant": "area",
+      "title": "Simulated normal distribution — μ=0, σ=1",
+      "data": [
+        { "name": "−3σ", "frequency": 1  },
+        { "name": "−2σ", "frequency": 6  },
+        { "name": "−1σ", "frequency": 24 },
+        { "name": "0",   "frequency": 38 },
+        { "name": "+1σ", "frequency": 24 },
+        { "name": "+2σ", "frequency": 6  },
+        { "name": "+3σ", "frequency": 1  }
+      ],
+      "keys": ["frequency"],
+      "colors": ["#d97706"]
+    },
+    {
+      "type": "text",
+      "content": "<h3>Mean, Median, and Mode</h3><p>Three measures of central tendency describe where data clusters:</p><ul><li><strong>Mean</strong>: arithmetic average — sensitive to outliers</li><li><strong>Median</strong>: middle value — robust to outliers</li><li><strong>Mode</strong>: most frequent value — useful for categorical data</li></ul>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\bar{x} = \\frac{1}{n}\\sum_{i=1}^{n} x_i \\qquad \\sigma^2 = \\frac{1}{n}\\sum_{i=1}^{n}(x_i - \\bar{x})^2"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Skewness</h3><p>Real data is often not symmetric. <strong>Skewness</strong> measures the asymmetry of a distribution:</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Symmetric vs. right-skewed distributions",
+      "data": [
+        { "name": "1",  "symmetric": 2,  "skewed": 30 },
+        { "name": "2",  "symmetric": 8,  "skewed": 25 },
+        { "name": "3",  "symmetric": 18, "skewed": 18 },
+        { "name": "4",  "symmetric": 28, "skewed": 12 },
+        { "name": "5",  "symmetric": 28, "skewed": 7  },
+        { "name": "6",  "symmetric": 18, "skewed": 5  },
+        { "name": "7",  "symmetric": 8,  "skewed": 2  },
+        { "name": "8",  "symmetric": 2,  "skewed": 1  }
+      ],
+      "keys": ["symmetric", "skewed"],
+      "colors": ["#d97706", "#fbbf24"]
+    },
+    {
+      "type": "quiz",
+      "question": "In a normal distribution with mean 100 and standard deviation 15, approximately what percentage of values fall between 70 and 130?",
+      "options": ["50%", "68%", "95%", "99.7%"],
+      "answer": 2,
+      "explanation": "70 and 130 are exactly 2 standard deviations from the mean (100 ± 2×15). The 68–95–99.7 rule tells us 95% of values fall within 2σ."
+    },
+    {
+      "type": "quiz",
+      "question": "A dataset has mean 50 and median 35. The distribution is most likely:",
+      "options": [
+        "Symmetric (normal)",
+        "Left-skewed (negatively skewed)",
+        "Right-skewed (positively skewed)",
+        "Uniform"
+      ],
+      "answer": 2,
+      "explanation": "When mean > median, the distribution has a long right tail pulling the mean upward — this is positive (right) skew."
+    },
+    {
+      "type": "quiz",
+      "question": "Which measure of central tendency is most resistant to extreme outliers?",
+      "options": ["Mean", "Median", "Mode", "Standard deviation"],
+      "answer": 1,
+      "explanation": "The median uses only the middle value and is unaffected by extreme values at either end. The mean shifts heavily when outliers are present."
+    }
+  ]
+}

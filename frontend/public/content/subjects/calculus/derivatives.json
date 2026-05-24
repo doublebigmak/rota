@@ -1,0 +1,105 @@
+{
+  "id": "derivatives",
+  "title": "Introduction to Derivatives",
+  "estimatedMinutes": 25,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<p>The <strong>derivative</strong> of a function describes its instantaneous rate of change at any given point. Geometrically, it is the slope of the tangent line to the curve at that point.</p>"
+    },
+    {
+      "type": "text",
+      "content": "<h3>The Limit Definition</h3><p>The derivative of f(x) is defined as the limit of the difference quotient:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "f'(x) = \\lim_{h \\to 0} \\frac{f(x+h) - f(x)}{h}"
+    },
+    {
+      "type": "text",
+      "content": "<p>Think of h as a tiny step: we measure the rise (f(x+h) − f(x)) over the run (h), and shrink h to zero to get the exact slope at that point.</p><h3>Example: f(x) = x²</h3>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "f'(x) = \\lim_{h \\to 0} \\frac{(x+h)^2 - x^2}{h} = \\lim_{h \\to 0} \\frac{2xh + h^2}{h} = 2x"
+    },
+    {
+      "type": "text",
+      "content": "<p>So the derivative of x² is 2x. At x = 3, the slope of the parabola is 2×3 = 6.</p><h3>Interactive: Exploring f(x) = x²</h3><p>The parabola below shows f(x) = x². Notice how it slopes gently near x = 0 and steeply at larger values — reflecting that f'(x) = 2x grows with x.</p>"
+    },
+    {
+      "type": "visualization",
+      "component": "FunctionPlot",
+      "props": {
+        "fnName": "x^2",
+        "domain": [-4, 4],
+        "range": [-0.5, 16],
+        "color": "#059669",
+        "label": "x²"
+      }
+    },
+    {
+      "type": "text",
+      "content": "<h3>The Derivative as a Function</h3><p>Because f'(x) = 2x is itself a function, we can plot both f and f' side by side. The derivative of sin(x) is cos(x):</p>"
+    },
+    {
+      "type": "visualization",
+      "component": "FunctionPlot",
+      "props": {
+        "fnName": "sin",
+        "domain": [-6.28, 6.28],
+        "range": [-1.5, 1.5],
+        "color": "#059669",
+        "label": "sin(x)"
+      }
+    },
+    {
+      "type": "text",
+      "content": "<p>Where sin(x) reaches its peaks and troughs, its derivative cos(x) equals zero — the tangent line is horizontal at those points.</p><h3>Common Derivatives</h3>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{d}{dx} x^n = nx^{n-1} \\qquad \\frac{d}{dx} \\sin x = \\cos x \\qquad \\frac{d}{dx} e^x = e^x"
+    },
+    {
+      "type": "chart",
+      "variant": "line",
+      "title": "Derivative values of f(x) = x² at selected points",
+      "data": [
+        { "name": "x=−3", "f(x)": 9,  "f'(x)": -6 },
+        { "name": "x=−2", "f(x)": 4,  "f'(x)": -4 },
+        { "name": "x=−1", "f(x)": 1,  "f'(x)": -2 },
+        { "name": "x=0",  "f(x)": 0,  "f'(x)": 0  },
+        { "name": "x=1",  "f(x)": 1,  "f'(x)": 2  },
+        { "name": "x=2",  "f(x)": 4,  "f'(x)": 4  },
+        { "name": "x=3",  "f(x)": 9,  "f'(x)": 6  }
+      ],
+      "keys": ["f(x)", "f'(x)"],
+      "colors": ["#059669", "#34d399"]
+    },
+    {
+      "type": "quiz",
+      "question": "What is the derivative of f(x) = x³?",
+      "options": ["x²", "3x²", "3x³", "x⁴/4"],
+      "answer": 1,
+      "explanation": "Using the power rule d/dx[xⁿ] = nxⁿ⁻¹: the derivative of x³ is 3x²."
+    },
+    {
+      "type": "quiz",
+      "question": "At a local maximum of f(x), the derivative f'(x) is:",
+      "options": ["Positive", "Negative", "Zero", "Undefined"],
+      "answer": 2,
+      "explanation": "At a local max or min, the tangent line is horizontal — its slope (the derivative) equals zero. This is a necessary condition for an extremum."
+    },
+    {
+      "type": "quiz",
+      "question": "What does d/dx[eˣ] equal?",
+      "options": ["xeˣ⁻¹", "eˣ", "e", "eˣ⁻¹"],
+      "answer": 1,
+      "explanation": "eˣ is the unique function that is its own derivative: d/dx[eˣ] = eˣ. This is one of the most remarkable facts in mathematics."
+    }
+  ]
+}

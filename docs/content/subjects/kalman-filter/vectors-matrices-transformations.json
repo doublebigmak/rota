@@ -1,0 +1,110 @@
+{
+  "id": "vectors-matrices-transformations",
+  "title": "Vectors, Matrices, and Transformations",
+  "estimatedMinutes": 50,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Vectors, Matrices, and Transformations</h2>\n<p>A Kalman Filter estimates a hidden state. A hidden state is usually a vector: a compact list of quantities that describe the system at a point in time.</p>\n<p>For example, if you are tracking an object, the state might contain position and velocity. If you are tracking an economic series, the state might contain a latent trend and a latent growth rate.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t = \\begin{bmatrix} p_t \\\\ v_t \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>The vector above says that the state at time <em>t</em> contains two numbers: position <em>p</em> and velocity <em>v</em>. The Kalman Filter does not only estimate one number; it can estimate a whole system of related hidden quantities.</p>\n<h3>Matrices as rules</h3>\n<p>A matrix describes how one vector is transformed into another. In dynamic systems, the matrix often describes how the state moves from one period to the next.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x_t = A x_{t-1}"
+    },
+    {
+      "type": "text",
+      "content": "<p>In this equation, <em>A</em> is the transition matrix. It encodes the law of motion. For a simple position-velocity system, a common transition matrix is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "A = \\begin{bmatrix} 1 & 1 \\\\ 0 & 1 \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>Multiplying this matrix by the previous state gives:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\begin{bmatrix} p_t \\\\ v_t \\end{bmatrix} = \\begin{bmatrix} 1 & 1 \\\\ 0 & 1 \\end{bmatrix}\\begin{bmatrix} p_{t-1} \\\\ v_{t-1} \\end{bmatrix} = \\begin{bmatrix} p_{t-1}+v_{t-1} \\\\ v_{t-1} \\end{bmatrix}"
+    },
+    {
+      "type": "text",
+      "content": "<p>This means the new position equals old position plus velocity, while velocity remains unchanged. The matrix is not decorative; it is the actual model of motion.</p>\n<h3>Dimension discipline</h3>\n<p>If the state vector has two elements, then the transition matrix must be 2 by 2. If the state vector has three elements, the transition matrix must be 3 by 3. Matrix dimensions force the model to be internally coherent.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "line",
+      "title": "State transition example",
+      "data": [
+        {
+          "name": "t0",
+          "position": 10,
+          "velocity": 2
+        },
+        {
+          "name": "t1",
+          "position": 12,
+          "velocity": 2
+        },
+        {
+          "name": "t2",
+          "position": 14,
+          "velocity": 2
+        },
+        {
+          "name": "t3",
+          "position": 16,
+          "velocity": 2
+        }
+      ],
+      "keys": [
+        "position",
+        "velocity"
+      ],
+      "colors": [
+        "#d97706",
+        "#4f46e5"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "In a state-space model, what does the transition matrix A usually describe?",
+      "options": [
+        "The variance of observations",
+        "How the state evolves from one period to the next",
+        "The number of observations",
+        "The final forecast error"
+      ],
+      "answer": 1,
+      "explanation": "The transition matrix maps the previous state into the predicted current state."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercises</h3>\n<ol>\n<li>Compute <code>[[1, 1], [0, 1]] * [8, 3]</code>.</li>\n<li>Interpret the matrix <code>[[0.8, 0], [0, 0.5]]</code>.</li>\n<li>Suppose a state has three components: level, slope, and acceleration. What size should its transition matrix be?</li>\n</ol>\n<h3>Solutions</h3>\n<ol>\n<li>The result is <code>[11, 3]</code>. Position rises by velocity; velocity stays the same.</li>\n<li>The first component keeps 80% of its previous value; the second keeps 50%. There is no interaction between components.</li>\n<li>The transition matrix should be 3 by 3.</li>\n</ol>"
+    },
+    {
+      "type": "quiz",
+      "question": "If x is 3×1 and A maps x into another 3×1 vector, what size is A?",
+      "options": [
+        "1×3",
+        "3×1",
+        "3×3",
+        "2×3"
+      ],
+      "answer": 2,
+      "explanation": "A must multiply a 3×1 vector and return a 3×1 vector, so A is 3×3."
+    }
+  ]
+}

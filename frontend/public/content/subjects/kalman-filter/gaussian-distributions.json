@@ -1,0 +1,104 @@
+{
+  "id": "gaussian-distributions",
+  "title": "Gaussian Distributions",
+  "estimatedMinutes": 55,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Gaussian Distributions</h2>\n<p>The standard Kalman Filter assumes linear dynamics and Gaussian noise. This is not just a convenience. It is what makes the filter mathematically closed-form.</p>\n<p>A scalar Gaussian random variable is written as:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "X \\sim \\mathcal{N}(\\mu,\\sigma^2)"
+    },
+    {
+      "type": "text",
+      "content": "<p>The first parameter is the mean. The second is the variance. In vector form, a multivariate Gaussian is written as:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "x \\sim \\mathcal{N}(\\mu, P)"
+    },
+    {
+      "type": "text",
+      "content": "<p>Here <em>μ</em> is a mean vector and <em>P</em> is a covariance matrix. This is exactly the form used by the Kalman Filter: it tracks a mean estimate and a covariance matrix.</p>\n<h3>The crucial property</h3>\n<p>If a Gaussian vector is transformed linearly, the result is still Gaussian.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\text{If } x \\sim \\mathcal{N}(\\mu,P), \\quad y = Ax+b, \\quad \\text{then } y \\sim \\mathcal{N}(A\\mu+b, APA^T)"
+    },
+    {
+      "type": "text",
+      "content": "<p>This property is the reason the Kalman prediction step works. The filter can push both the estimate and its uncertainty through the system dynamics without needing to store an entire probability distribution.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "area",
+      "title": "Gaussian intuition",
+      "data": [
+        {
+          "name": "-2σ",
+          "density": 0.05
+        },
+        {
+          "name": "-1σ",
+          "density": 0.24
+        },
+        {
+          "name": "μ",
+          "density": 0.4
+        },
+        {
+          "name": "+1σ",
+          "density": 0.24
+        },
+        {
+          "name": "+2σ",
+          "density": 0.05
+        }
+      ],
+      "keys": [
+        "density"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "Why are Gaussian distributions convenient for Kalman filtering?",
+      "options": [
+        "They stay Gaussian under linear transformations",
+        "They remove all uncertainty",
+        "They require no covariance matrix",
+        "They only work in one dimension"
+      ],
+      "answer": 0,
+      "explanation": "The filter can track only means and covariances because Gaussian form is preserved."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercise</h3>\n<p>Let <em>X</em> have mean 5 and variance 4. Define <em>Y = 2X + 3</em>. Find the mean and variance of <em>Y</em>.</p>\n<h3>Solution</h3>\n<p>The mean is <code>2*5 + 3 = 13</code>. The variance is <code>2²*4 = 16</code>. Multiplying by 2 scales variance by 4.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "E[aX+b]=aE[X]+b, \\quad \\operatorname{Var}(aX+b)=a^2\\operatorname{Var}(X)"
+    },
+    {
+      "type": "quiz",
+      "question": "If Y = 3X and Var(X)=2, what is Var(Y)?",
+      "options": [
+        "2",
+        "3",
+        "6",
+        "18"
+      ],
+      "answer": 3,
+      "explanation": "Variance scales by the square of the multiplier: 3² × 2 = 18."
+    }
+  ]
+}

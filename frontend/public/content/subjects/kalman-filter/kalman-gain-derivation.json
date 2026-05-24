@@ -1,0 +1,124 @@
+{
+  "id": "kalman-gain-derivation",
+  "title": "Deriving the Kalman Gain",
+  "estimatedMinutes": 65,
+  "blocks": [
+    {
+      "type": "text",
+      "content": "<h2>Deriving the Kalman Gain</h2>\n<p>The Kalman gain is not arbitrary. In the scalar case, it can be derived by choosing the gain that minimizes posterior estimation error variance.</p>\n<p>Start with the update rule:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\hat{x}_{t|t}=\\hat{x}_{t|t-1}+K(z_t-\\hat{x}_{t|t-1})"
+    },
+    {
+      "type": "text",
+      "content": "<p>Let the prior error be <em>e^- = x_t - \\hat{x}_{t|t-1}</em>. Since the observation is <em>z_t=x_t+v_t</em>, the posterior error is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "e = x_t-\\hat{x}_{t|t}"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "e=(1-K)e^- - Kv_t"
+    },
+    {
+      "type": "text",
+      "content": "<p>Assuming the prior error and measurement noise are uncorrelated, the posterior variance is:</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "P(K)=(1-K)^2P^-+K^2R"
+    },
+    {
+      "type": "text",
+      "content": "<h3>Minimize with calculus</h3>\n<p>Differentiate with respect to <em>K</em> and set the derivative equal to zero.</p>"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "\\frac{dP(K)}{dK}=-2(1-K)P^-+2KR"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "-P^-+KP^-+KR=0"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K(P^-+R)=P^-"
+    },
+    {
+      "type": "math",
+      "display": true,
+      "content": "K=\\frac{P^-}{P^-+R}"
+    },
+    {
+      "type": "text",
+      "content": "<p>This is the scalar Kalman gain. It is the uncertainty-weighted adjustment rule.</p>"
+    },
+    {
+      "type": "chart",
+      "variant": "bar",
+      "title": "Gain as measurement noise changes",
+      "data": [
+        {
+          "name": "R=1",
+          "gain": 0.91
+        },
+        {
+          "name": "R=5",
+          "gain": 0.67
+        },
+        {
+          "name": "R=10",
+          "gain": 0.5
+        },
+        {
+          "name": "R=50",
+          "gain": 0.17
+        }
+      ],
+      "keys": [
+        "gain"
+      ],
+      "colors": [
+        "#d97706"
+      ]
+    },
+    {
+      "type": "quiz",
+      "question": "What criterion is used to derive the scalar Kalman gain here?",
+      "options": [
+        "Maximize the observation",
+        "Minimize posterior error variance",
+        "Minimize the number of states",
+        "Maximize process noise"
+      ],
+      "answer": 1,
+      "explanation": "The optimal gain minimizes the posterior variance of the estimation error."
+    },
+    {
+      "type": "text",
+      "content": "<h3>Exercises</h3>\n<ol>\n<li>Show that if <em>R=0</em>, then <em>K=1</em>.</li>\n<li>Show that if <em>P⁻=0</em>, then <em>K=0</em>.</li>\n<li>Explain both cases in words.</li>\n</ol>\n<h3>Solutions</h3>\n<ol>\n<li><em>K=P⁻/(P⁻+0)=1</em>.</li>\n<li><em>K=0/(0+R)=0</em>.</li>\n<li>If observation noise is zero, fully trust the observation. If the prediction has zero uncertainty, do not adjust it.</li>\n</ol>"
+    },
+    {
+      "type": "quiz",
+      "question": "If predicted uncertainty P⁻ rises while R stays fixed, what happens to K?",
+      "options": [
+        "It rises",
+        "It falls",
+        "It stays exactly zero",
+        "It becomes undefined"
+      ],
+      "answer": 0,
+      "explanation": "Greater predicted uncertainty makes the filter rely more on the new observation."
+    }
+  ]
+}
